@@ -20,3 +20,12 @@ vim.opt.wrap = false
 vim.opt.guifont = "JetBrainsMono Nerd Font:h12"
 vim.opt.list = true
 vim.opt.listchars = "tab:▸\\ ,trail:·"
+vim.api.nvim_exec(
+	[[
+    augroup YankHighlight
+    autocmd!
+    autocmd TextYankPost * silent! lua vim.highlight.on_yank()
+    augroup end
+  ]],
+	false
+)

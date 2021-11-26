@@ -52,6 +52,9 @@ wk.register({
 	["<leader>c"] = {
 		name = "+code/lsp",
 		d = { "<cmd>lua vim.lsp.buf.definition()<cr>", "Go to Definition" },
+		h = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Hover Information" },
+		r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
+		f = { "<cmd>lua vim.lsp.buf.formatting()<cr>", "Format" },
 	},
 })
 

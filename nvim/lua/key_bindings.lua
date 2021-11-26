@@ -32,3 +32,10 @@ wk.register({
 		p = { "<cmd>HopPattern<cr>", "Search for Pattern" },
 	},
 })
+
+wk.register({
+	["<leader>g"] = {
+		name = "+git",
+		m = { "<cmd>Neogit<cr>", "Neogit Menu" },
+	},
+})

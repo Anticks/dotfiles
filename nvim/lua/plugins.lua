@@ -3,49 +3,14 @@ vim.cmd([[packadd packer.nvim]])
 return require("packer").startup(function()
 	use("wbthomason/packer.nvim")
 
-	use("9mm/vim-closer")
-
-	use({ "tpope/vim-dispatch", opt = true, cmd = { "Dispatch", "Make", "Focus", "Start" } })
-
+	--
+	-- Color Scheme
+	--
 	use("EdenEast/nightfox.nvim")
 
-	use({ "andymass/vim-matchup", event = "VimEnter" })
-
-	use({
-		"w0rp/ale",
-		ft = { "sh", "zsh", "bash", "c", "cpp", "cmake", "html", "markdown", "racket", "vim", "tex" },
-		cmd = "ALEEnable",
-		config = "vim.cmd[[ALEEnable]]",
-	})
-
-	use({
-		"goolord/alpha-nvim",
-		requires = { "kyazdani42/nvim-web-devicons" },
-		config = function()
-			require("alpha").setup(require("alpha.themes.startify").opts)
-		end,
-	})
-
-	use({
-		"glacambre/firenvim",
-		run = function()
-			vim.fn["firenvim#install"](0)
-		end,
-	})
-
-	use({
-		"nvim-lualine/lualine.nvim",
-		requires = { "kyazdani42/nvim-web-devicons", opt = true },
-	})
-
-	use({
-		"lewis6991/gitsigns.nvim",
-		requires = { "nvim-lua/plenary.nvim" },
-		config = function()
-			require("gitsigns").setup()
-		end,
-	})
-
+	--
+	-- LSP and Auto Completion
+	--
 	use("neovim/nvim-lspconfig")
 
 	use("hrsh7th/cmp-nvim-lsp")
@@ -76,6 +41,9 @@ return require("packer").startup(function()
 
 	use("hrsh7th/cmp-emoji")
 
+	--
+	-- Key Binding
+	--
 	use({
 		"folke/which-key.nvim",
 		config = function()
@@ -94,7 +62,28 @@ return require("packer").startup(function()
 		end,
 	})
 
-	use("tpope/vim-fugitive")
+	--
+	-- Productivity
+	--
+	use("9mm/vim-closer")
+
+	use("b3nj5m1n/kommentary")
+
+	use({ "tpope/vim-dispatch", opt = true, cmd = { "Dispatch", "Make", "Focus", "Start" } })
+
+	use({ "andymass/vim-matchup", event = "VimEnter" })
+
+	use({ "TimUntersberger/neogit", requires = "nvim-lua/plenary.nvim" })
+
+	use({
+		"nvim-lualine/lualine.nvim",
+		requires = { "kyazdani42/nvim-web-devicons", opt = true },
+	})
+
+	use({
+		"nvim-treesitter/nvim-treesitter",
+		run = ":TSUpdate",
+	})
 
 	use({
 		"folke/trouble.nvim",
@@ -130,10 +119,33 @@ return require("packer").startup(function()
 		end,
 	})
 
-	use("b3nj5m1n/kommentary")
+	use({
+		"goolord/alpha-nvim",
+		requires = { "kyazdani42/nvim-web-devicons" },
+		config = function()
+			require("alpha").setup(require("alpha.themes.startify").opts)
+		end,
+	})
 
 	use({
-		"nvim-treesitter/nvim-treesitter",
-		run = ":TSUpdate",
+		"lewis6991/gitsigns.nvim",
+		requires = { "nvim-lua/plenary.nvim" },
+		config = function()
+			require("gitsigns").setup()
+		end,
+	})
+
+	use({
+		"w0rp/ale",
+		ft = { "sh", "zsh", "bash", "c", "cpp", "cmake", "html", "markdown", "racket", "vim", "tex" },
+		cmd = "ALEEnable",
+		config = "vim.cmd[[ALEEnable]]",
+	})
+
+	use({
+		"glacambre/firenvim",
+		run = function()
+			vim.fn["firenvim#install"](0)
+		end,
 	})
 end)

@@ -4,6 +4,10 @@ local lsp = require("lspconfig")
 local lspkind = require("lspkind")
 local capabilities = require("cmp_nvim_lsp")
 local rust_tools = require("rust-tools")
+local lsp_signature = require("lsp_signature")
+
+-- LSP SIGNATURE
+lsp_signature.setup()
 
 -- CMP
 cmp.setup({
@@ -79,7 +83,7 @@ capabilities.update_capabilities(vim.lsp.protocol.make_client_capabilities())
 lsp.rust_analyzer.setup({
 	capabilities = capabilities,
 	on_attach = function(client, bufnr)
-		require("lsp_signature").on_attach() -- Note: add in lsp client on-attach
+		lsp_signature.on_attach() -- Note: add in lsp client on-attach
 	end,
 })
 

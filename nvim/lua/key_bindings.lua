@@ -27,14 +27,39 @@ wk.register({
 })
 
 wk.register({
+	["<leader>b"] = {
+		name = "+buffer",
+		f = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Current Buffer Fuzzy Find" },
+		t = { "<cmd>Telescope current_buffer_tags<cr>", "Current Buffer Tags" },
+	},
+})
+
+wk.register({
 	["<leader>g"] = {
 		name = "+git",
 		m = { "<cmd>Neogit<cr>", "Neogit Menu" },
-		b = { "<cmd>Gitsigns toggle_current_line_blame<cr>", "Toggle Blame Line" },
-		B = { "<cmd>Gitsigns blame_line<cr>", "Blame Line" },
+		b = { "<cmd>Telescope git_branches<cr>", "Git Branches" },
+		l = { "<cmd>Gitsigns toggle_current_line_blame<cr>", "Toggle Blame Line" },
+		L = { "<cmd>Gitsigns blame_line<cr>", "Blame Line" },
 		s = { "<cmd>Gitsigns stage_hunk<cr>", "Stage Hunk" },
 		S = { "<cmd>Gitsigns stage_buffer<cr>", "Stage Buffer" },
 		p = { "<cmd>Gitsigns preview_hunk<cr>", "Preview Hunk" },
 		r = { "<cmd>Gitsigns reset_hunk<cr>", "Reset Hunk" },
 	},
 })
+
+wk.register({
+	["<leader>c"] = {
+		name = "+code/lsp",
+		d = { "<cmd>lua vim.lsp.buf.definition()<cr>", "Go to Definition" },
+	},
+})
+
+
+wk.register({
+	["<leader>s"] = {
+		name = "+settings",
+		c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
+	},
+})
+

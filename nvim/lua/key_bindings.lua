@@ -13,8 +13,7 @@ wk.register({
 	["<leader>f"] = {
 		name = "+file",
 		f = { "<cmd>Telescope find_files<cr>", "Find file" },
-		r = { "<cmd>Telescope oldfiles<cr>", "Open recent file" },
-		n = { "<cmd>enew<cr>", "New file" },
+		r = { "<cmd>Telescope oldfiles<cr>", "Open recent file" }, n = { "<cmd>enew<cr>", "New file" },
 		t = { "<cmd>NvimTreeToggle<cr>", "Toggle NvimTree" },
 	},
 })

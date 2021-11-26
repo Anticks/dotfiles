@@ -1,3 +1,4 @@
+-- Auto installs packer
 local function packer_init()
 	local fn = vim.fn
 	local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
@@ -23,7 +24,6 @@ packer_init()
 
 require("plugins")
 require("colorscheme")
-require("keybindings")
-require("common")
--- require("lsp")
-require("cmpconfig")
+require("key_bindings")
+require("vim_settings")
+require("lsp_config")

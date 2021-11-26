@@ -1,4 +1,4 @@
-require("nightfox").load("duskfox")
+require("nightfox").load("palefox")
 
 require("lualine").setup({
 	options = {

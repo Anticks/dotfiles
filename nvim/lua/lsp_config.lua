@@ -3,7 +3,9 @@ local cmp = require("cmp")
 local lsp = require("lspconfig")
 local lspkind = require("lspkind")
 local capabilities = require("cmp_nvim_lsp")
+local rust_tools = require("rust-tools")
 
+-- CMP
 cmp.setup({
 	snippet = {
 		-- REQUIRED - you must specify a snippet engine
@@ -71,10 +73,9 @@ cmp.setup.cmdline(":", {
 	}),
 })
 
--- Setup lspconfig.
 capabilities.update_capabilities(vim.lsp.protocol.make_client_capabilities())
--- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
---
+
+-- RUST
 lsp.rust_analyzer.setup({
 	capabilities = capabilities,
 	on_attach = function(client, bufnr)
@@ -82,5 +83,4 @@ lsp.rust_analyzer.setup({
 	end,
 })
 
-require("lsp_signature").setup()
-require("rust-tools").setup({})
+rust_tools.setup({})

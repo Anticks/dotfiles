@@ -36,6 +36,6 @@ wk.register({
 wk.register({
 	["<leader>g"] = {
 		name = "+git",
-		m = { "<cmd>Neogit<cr>", "Neogit Menu" },
+		m = { "<cmd>Neogit<cr>", "Neogit menu" },
 	},
 })

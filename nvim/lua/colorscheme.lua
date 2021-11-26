@@ -1,8 +1,9 @@
-require("nightfox").load("nordfox")
+vim.g.material_style = "darker"
+vim.cmd 'colorscheme material'
 
 require("lualine").setup({
 	options = {
 		-- ... your lualine config
-		theme = "nightfox",
+		theme = "material-nvim",
 	},
 })

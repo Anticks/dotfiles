@@ -8,6 +8,8 @@ return require("packer").startup(function()
 	--
 	use("EdenEast/nightfox.nvim")
 
+	use("marko-cerovac/material.nvim")
+
 	--
 	-- LSP and Auto Completion
 	--

@@ -22,8 +22,8 @@ end
 
 packer_init()
 
+require("vim_settings")
 require("plugins")
 require("colorscheme")
 require("key_bindings")
-require("vim_settings")
 require("lsp_config")

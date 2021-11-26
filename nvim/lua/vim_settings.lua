@@ -1,4 +1,5 @@
 vim.opt.completeopt = { "menuone", "noinsert", "noselect" }
+vim.g.kommentary_create_default_mappings = false
 vim.opt.expandtab = true
 vim.opt.hidden = true
 vim.opt.ignorecase = true

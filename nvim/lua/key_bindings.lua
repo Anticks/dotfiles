@@ -69,6 +69,15 @@ wk.register({
 	},
 })
 
+wk.register({
+	["<leader>t"] = {
+		name = "+text",
+		d = { "<Plug>Dsurround", "Delete Surrounding" },
+		c = { "<Plug>Csurround", "Change Surrounding" },
+		s = { "<Plug>Ysurround", "You Surround" },
+	},
+})
+
 --
 -- VISUAL MODE
 --
@@ -84,5 +93,12 @@ wk.register({
 		c = { "<cmd>HopChar1<cr>", "1 Character" },
 		C = { "<cmd>HopChar2<cr>", "2 Characters" },
 		p = { "<cmd>HopPattern<cr>", "Search for Pattern" },
+	},
+}, { mode = "v" })
+
+wk.register({
+	["<leader>t"] = {
+		name = "+text",
+		s = { "<Plug>VSurround", "You Surround" },
 	},
 }, { mode = "v" })

@@ -71,6 +71,8 @@ return require("packer").startup(function()
 
 	use("b3nj5m1n/kommentary")
 
+	use("tpope/vim-surround")
+
 	use({ "tpope/vim-dispatch", opt = true, cmd = { "Dispatch", "Make", "Focus", "Start" } })
 
 	use({ "andymass/vim-matchup", event = "VimEnter" })

@@ -1,5 +1,24 @@
 local wk = require("which-key")
 
+--
+-- Lazygit terminal settings
+--
+local Terminal = require("toggleterm.terminal").Terminal
+local lazygit = Terminal:new({
+	cmd = "lazygit",
+	hidden = true,
+	direction = "float",
+	float_opts = { border = "double" },
+})
+
+function _lazygit_toggle()
+	lazygit:toggle()
+end
+
+--
+--
+--
+
 vim.g.mapleader = " "
 
 wk.register({
@@ -42,6 +61,7 @@ wk.register({
 	["<leader>g"] = {
 		name = "+git",
 		m = { "<cmd>Neogit<cr>", "Neogit Menu" },
+		M = { "<cmd>lua _lazygit_toggle()<cr>", "Lazygit Menu" },
 		b = { "<cmd>Telescope git_branches<cr>", "Git Branches" },
 		l = { "<cmd>Gitsigns toggle_current_line_blame<cr>", "Toggle Blame Line" },
 		L = { "<cmd>Gitsigns blame_line<cr>", "Blame Line" },
@@ -55,6 +75,7 @@ wk.register({
 wk.register({
 	["<leader>c"] = {
 		name = "+code/lsp",
+		a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
 		d = { "<cmd>lua vim.lsp.buf.definition()<cr>", "Go to Definition" },
 		h = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Hover Information" },
 		r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },

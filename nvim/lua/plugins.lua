@@ -73,6 +73,13 @@ return require("packer").startup(function()
 
 	use("tpope/vim-surround")
 
+	use({
+		"akinsho/toggleterm.nvim",
+		config = function()
+			require("plugins.toggle_terminal_config")
+		end,
+	})
+
 	use({ "tpope/vim-dispatch", opt = true, cmd = { "Dispatch", "Make", "Focus", "Start" } })
 
 	use({ "andymass/vim-matchup", event = "VimEnter" })

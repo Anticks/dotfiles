@@ -5,9 +5,17 @@ local lspkind = require("lspkind")
 local capabilities = require("cmp_nvim_lsp")
 local rust_tools = require("rust-tools")
 local lsp_signature = require("lsp_signature")
+local path_to_elixirls = vim.fn.expand("~/.config/elixir-ls/language_server.sh")
 
 -- LSP SIGNATURE
-lsp_signature.setup()
+lsp_signature.setup({
+	bind = true, -- This is mandatory, otherwise border config won't get registered.
+	handler_opts = {
+		border = "rounded",
+	},
+	floating_window = false,
+	hint_prefix = "👺 ",
+})
 
 -- CMP
 cmp.setup({
@@ -79,12 +87,26 @@ cmp.setup.cmdline(":", {
 
 capabilities.update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
--- RUST
-lsp.rust_analyzer.setup({
-	capabilities = capabilities,
-	on_attach = function(client, bufnr)
-		lsp_signature.on_attach() -- Note: add in lsp client on-attach
-	end,
+--
+-- Elixir
+--
+lsp.elixirls.setup({
+	cmd = { path_to_elixirls },
+	settings = {
+		elixirLS = {
+			-- I choose to disable dialyzer for personal reasons, but
+			-- I would suggest you also disable it unless you are well
+			-- aquainted with dialzyer and know how to use it.
+			dialyzerEnabled = true,
+			-- I also choose to turn off the auto dep fetching feature.
+			-- It often get's into a weird state that requires deleting
+			-- the .elixir_ls directory and restarting your editor.
+			fetchDeps = false,
+		},
+	},
 })
 
+--
+-- RUST
+--
 rust_tools.setup({})

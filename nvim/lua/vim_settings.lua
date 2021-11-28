@@ -31,3 +31,4 @@ vim.api.nvim_exec(
   ]],
 	false
 )
+vim.lsp.set_log_level('debug')

@@ -73,6 +73,8 @@ return require("packer").startup(function()
 
 	use("tpope/vim-surround")
 
+	use("vim-test/vim-test")
+
 	use({
 		"akinsho/toggleterm.nvim",
 		config = function()

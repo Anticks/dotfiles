@@ -115,7 +115,7 @@ wk.register({
 })
 
 --
--- VISUAL MODE BINDING
+-- VISUAL MODE BINDINGS
 --
 wk.register({
 	["<leader>/"] = { "<Plug>kommentary_visual_default", "Komment Line(s)" },

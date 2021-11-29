@@ -43,6 +43,8 @@ return require("packer").startup(function()
 
 	use("hrsh7th/cmp-emoji")
 
+	use("octaltree/cmp-look")
+
 	--
 	-- Key Binding
 	--

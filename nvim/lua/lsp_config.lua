@@ -41,7 +41,9 @@ cmp.setup({
 	},
 	sources = cmp.config.sources({
 		{ name = "nvim_lsp" },
+		{ name = "path" },
 		{ name = "vsnip" }, -- For vsnip users.
+		{ name = "look", keyword_length = 2, option = { convert_case = true, loud = true } },
 		-- { name = 'luasnip' }, -- For luasnip users.
 		-- { name = "ultisnips" }, -- For ultisnips users.
 		-- { name = 'snippy' }, -- For snippy users.

@@ -31,9 +31,9 @@ return require("packer").startup(function()
 
 	use("ray-x/lsp_signature.nvim")
 
-	use("hrsh7th/cmp-vsnip")
+	use("SirVer/ultisnips")
 
-	use("hrsh7th/vim-vsnip")
+	use("quangnguyen30192/cmp-nvim-ultisnips")
 
 	use("simrat39/rust-tools.nvim")
 

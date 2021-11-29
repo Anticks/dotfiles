@@ -70,8 +70,10 @@ wk.register({
 		L = { "<cmd>Gitsigns blame_line<cr>", "Blame line detail" },
 		s = { "<cmd>Gitsigns stage_hunk<cr>", "Stage hunk" },
 		S = { "<cmd>Gitsigns stage_buffer<cr>", "Stage buffer" },
-		p = { "<cmd>Gitsigns preview_hunk<cr>", "Preview hunk" },
+		P = { "<cmd>Gitsigns preview_hunk<cr>", "Preview hunk" },
 		r = { "<cmd>Gitsigns reset_hunk<cr>", "Reset hunk" },
+		n = { "<cmd>Gitsigns next_hunk<cr>", "Next hunk" },
+		p = { "<cmd>Gitsigns prev_hunk<cr>", "Previous hunk" },
 	},
 })
 
@@ -113,7 +115,7 @@ wk.register({
 })
 
 --
--- VISUAL MODE BINDINGS
+-- VISUAL MODE BINDING
 --
 wk.register({
 	["<leader>/"] = { "<Plug>kommentary_visual_default", "Komment Line(s)" },

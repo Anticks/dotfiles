@@ -77,6 +77,7 @@ return require("packer").startup(function()
 
 	use("vim-test/vim-test")
 
+
 	use({
 		"akinsho/toggleterm.nvim",
 		config = function()
@@ -89,6 +90,8 @@ return require("packer").startup(function()
 	use({ "andymass/vim-matchup", event = "VimEnter" })
 
 	use({ "TimUntersberger/neogit", requires = "nvim-lua/plenary.nvim" })
+
+	use({ "ThePrimeagen/harpoon", requires = "nvim-lua/plenary.nvim" })
 
 	use({
 		"nvim-lualine/lualine.nvim",

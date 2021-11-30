@@ -38,6 +38,8 @@ wk.register({
 		w = { "<cmd>Telescope grep_string<cr>", "Find word" },
 		n = { "<cmd>enew<cr>", "New file" },
 		t = { "<cmd>NvimTreeToggle<cr>", "Toggle NvimTree" },
+		a = { "<cmd>lua require(\"harpoon.mark\").add_file()<cr>", "Add file to harpoon" },
+		h = { "<cmd>lua require(\"harpoon.ui\").toggle_quick_menu()<cr>", "Open harpoon" },
 	},
 })
 
@@ -85,6 +87,7 @@ wk.register({
 		h = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Hover information" },
 		r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
 		f = { "<cmd>lua vim.lsp.buf.formatting()<cr>", "Format file" },
+		t = { "<cmd>TroubleToggle<cr>", "Toggle trouble diagnostics" },
 	},
 })
 

@@ -32,3 +32,5 @@ vim.api.nvim_exec(
 	false
 )
 vim.lsp.set_log_level('debug')
+vim.api.nvim_command('let test#strategy = "neovim"')
+vim.api.nvim_command('let test#neovim#start_normal = 1')

@@ -77,6 +77,7 @@ return require("packer").startup(function()
 
 	use("vim-test/vim-test")
 
+	use("rcarriga/nvim-notify")
 
 	use({
 		"akinsho/toggleterm.nvim",
@@ -88,8 +89,6 @@ return require("packer").startup(function()
 	use({ "tpope/vim-dispatch", opt = true, cmd = { "Dispatch", "Make", "Focus", "Start" } })
 
 	use({ "andymass/vim-matchup", event = "VimEnter" })
-
-	use({ "TimUntersberger/neogit", requires = "nvim-lua/plenary.nvim" })
 
 	use({ "ThePrimeagen/harpoon", requires = "nvim-lua/plenary.nvim" })
 
@@ -107,6 +106,14 @@ return require("packer").startup(function()
 	})
 
 	use({
+		"TimUntersberger/neogit",
+		requires = "nvim-lua/plenary.nvim",
+		config = function()
+			require("neogit").setup({})
+		end,
+	})
+
+	use({
 		"folke/trouble.nvim",
 		requires = "kyazdani42/nvim-web-devicons",
 		config = function()
@@ -115,6 +122,14 @@ return require("packer").startup(function()
 				-- or leave it empty to use the default settings
 				-- refer to the configuration section below
 			})
+		end,
+	})
+
+	use({
+		"michaelb/sniprun",
+		run = "bash ./install.sh",
+		config = function()
+			require("plugins.sniprun_config")
 		end,
 	})
 

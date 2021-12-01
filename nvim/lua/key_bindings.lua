@@ -38,8 +38,9 @@ wk.register({
 		w = { "<cmd>Telescope grep_string<cr>", "Find word" },
 		n = { "<cmd>enew<cr>", "New file" },
 		t = { "<cmd>NvimTreeToggle<cr>", "Toggle NvimTree" },
-		a = { "<cmd>lua require(\"harpoon.mark\").add_file()<cr>", "Add file to harpoon" },
-		h = { "<cmd>lua require(\"harpoon.ui\").toggle_quick_menu()<cr>", "Open harpoon" },
+		a = { '<cmd>lua require("harpoon.mark").add_file()<cr>', "Add file to harpoon" },
+		H = { '<cmd>lua require("harpoon.ui").toggle_quick_menu()<cr>', "Open harpoon" },
+		h = { "<cmd>Telescope harpoon marks<cr>", "Telescope tha harpoon!" },
 	},
 })
 
@@ -68,10 +69,11 @@ wk.register({
 		m = { "<cmd>Neogit<cr>", "Neogit menu" },
 		M = { "<cmd>lua _lazygit_toggle()<cr>", "Lazygit menu" },
 		b = { "<cmd>Telescope git_branches<cr>", "Git branches" },
+		s = { "<cmd>Telescope git_status<cr>", "Git branches" },
 		l = { "<cmd>Gitsigns toggle_current_line_blame<cr>", "Toggle blame line" },
 		L = { "<cmd>Gitsigns blame_line<cr>", "Blame line detail" },
-		s = { "<cmd>Gitsigns stage_hunk<cr>", "Stage hunk" },
-		S = { "<cmd>Gitsigns stage_buffer<cr>", "Stage buffer" },
+		h = { "<cmd>Gitsigns stage_hunk<cr>", "Stage hunk" },
+		B = { "<cmd>Gitsigns stage_buffer<cr>", "Stage buffer" },
 		P = { "<cmd>Gitsigns preview_hunk<cr>", "Preview hunk" },
 		r = { "<cmd>Gitsigns reset_hunk<cr>", "Reset hunk" },
 		n = { "<cmd>Gitsigns next_hunk<cr>", "Next hunk" },
@@ -94,7 +96,9 @@ wk.register({
 wk.register({
 	["<leader>s"] = {
 		name = "+settings",
-		c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
+		c = { "<cmd>Telescope colorscheme<cr>", "Change colorscheme" },
+		k = { "<cmd>e ~/.config/nvim/lua/key_bindings.lua<cr>", "Open Keybindings" },
+		p = { "<cmd>e ~/.config/nvim/lua/plugins.lua<cr>", "Open Plugins" },
 	},
 })
 
@@ -103,8 +107,10 @@ wk.register({
 		name = "+test",
 		n = { "<cmd>TestNearest<cr>", "Test nearest file" },
 		c = { "<cmd>TestFile<cr>", "Test current file" },
-		s = { "<cmd>TestSuite<cr>", "Test suite" },
+		S = { "<cmd>TestSuite<cr>", "Test suite" },
 		v = { "<cmd>TestVisit<cr>", "Visit last test file" },
+		s = { "<cmd>SnipRun<cr>", "Run snippet of code" },
+		d = { "<cmd>SnipClose<cr>", "Delete code snippets" },
 	},
 })
 
@@ -139,5 +145,12 @@ wk.register({
 	["<leader>w"] = {
 		name = "+words",
 		s = { "<Plug>VSurround", "You Surround" },
+	},
+}, { mode = "v" })
+
+wk.register({
+	["<leader>t"] = {
+		name = "+test",
+		s = { "<Plug>SnipRun", "Run snippet of code" },
 	},
 }, { mode = "v" })

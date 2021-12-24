@@ -1,6 +1,6 @@
 require("nvim-treesitter.configs").setup({
-  ensure_installed = "all",
-  ignore_install = { "haskell" },
+	ensure_installed = "all",
+	ignore_install = { "haskell", "elixir" },
 	highlight = {
 		enable = true, -- false will disable the whole extension
 	},

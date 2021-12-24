@@ -97,7 +97,9 @@ wk.register({
 	["<leader>s"] = {
 		name = "+settings",
 		c = { "<cmd>Telescope colorscheme<cr>", "Change colorscheme" },
-		k = { "<cmd>e ~/.config/nvim/lua/key_bindings.lua<cr>", "Open Keybindings" },
+		k = { "<cmd>e ~/.config/nvim/lua/key_bindings.lua<cr>", "Open Key bindings" },
+		K = { "<cmd>e ~/.config/kitty/kitty.conf<cr>", "Open Kitty Configuration" },
+		f = { "<cmd>e ~/.config/fish/config.fish<cr>", "Open Fish Configuration" },
 		p = { "<cmd>e ~/.config/nvim/lua/plugins.lua<cr>", "Open Plugins" },
 	},
 })

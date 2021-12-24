@@ -79,6 +79,8 @@ return require("packer").startup(function()
 
 	use("rcarriga/nvim-notify")
 
+	use("elixir-editors/vim-elixir")
+
 	use({
 		"akinsho/toggleterm.nvim",
 		config = function()

@@ -13,6 +13,8 @@ return require("packer").startup(function()
 	--
 	-- LSP and Auto Completion
 	--
+	use("jose-elias-alvarez/null-ls.nvim")
+
 	use("neovim/nvim-lspconfig")
 
 	use("hrsh7th/cmp-nvim-lsp")
@@ -128,14 +130,6 @@ return require("packer").startup(function()
 	})
 
 	use({
-		"michaelb/sniprun",
-		run = "bash ./install.sh",
-		config = function()
-			require("plugins.sniprun_config")
-		end,
-	})
-
-	use({
 		"nvim-telescope/telescope.nvim",
 		requires = { { "nvim-lua/plenary.nvim" } },
 	})
@@ -171,13 +165,6 @@ return require("packer").startup(function()
 		config = function()
 			require("plugins.git_signs_config")
 		end,
-	})
-
-	use({
-		"w0rp/ale",
-		ft = { "sh", "zsh", "bash", "c", "cpp", "cmake", "html", "markdown", "racket", "vim", "tex" },
-		cmd = "ALEEnable",
-		config = "vim.cmd[[ALEEnable]]",
 	})
 
 	use({

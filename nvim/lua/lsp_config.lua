@@ -1,5 +1,6 @@
 -- Setup nvim-cmp.
 local cmp = require("cmp")
+local null_ls = require("null-ls")
 local lsp = require("lspconfig")
 local lspkind = require("lspkind")
 local capabilities = require("cmp_nvim_lsp")
@@ -99,12 +100,23 @@ lsp.elixirls.setup({
 			-- I choose to disable dialyzer for personal reasons, but
 			-- I would suggest you also disable it unless you are well
 			-- aquainted with dialzyer and know how to use it.
-			dialyzerEnabled = false,
+			dialyzerEnabled = true,
 			-- I also choose to turn off the auto dep fetching feature.
 			-- It often get's into a weird state that requires deleting
 			-- the .elixir_ls directory and restarting your editor.
 			fetchDeps = false,
 		},
+	},
+})
+
+--
+-- Null LS
+--
+
+null_ls.setup({
+	sources = {
+		null_ls.builtins.completion.spell,
+		null_ls.builtins.diagnostics.credo,
 	},
 })
 

@@ -112,8 +112,6 @@ wk.register({
 		S = { "<cmd>TestSuite<cr>", "Test suite" },
 		v = { "<cmd>TestVisit<cr>", "Visit last test file" },
 		l = { "<cmd>TestLast<cr>", "Run most recent test" },
-		s = { "<cmd>SnipRun<cr>", "Run snippet of code" },
-		d = { "<cmd>SnipClose<cr>", "Delete code snippets" },
 	},
 })
 
@@ -154,6 +152,5 @@ wk.register({
 wk.register({
 	["<leader>t"] = {
 		name = "+test",
-		s = { "<Plug>SnipRun", "Run snippet of code" },
 	},
 }, { mode = "v" })

@@ -7,6 +7,8 @@ local capabilities = require("cmp_nvim_lsp")
 local rust_tools = require("rust-tools")
 local lsp_signature = require("lsp_signature")
 local path_to_elixirls = vim.fn.expand("~/.config/elixir-ls/language_server.sh")
+local path_to_ltexls = vim.fn.expand("~/.config/ltex-ls/bin/ltex-ls")
+local path_to_ltexls_en = vim.fn.expand("~/.config/ltex-ls/en")
 
 -- LSP SIGNATURE
 lsp_signature.setup({
@@ -41,10 +43,12 @@ cmp.setup({
 		["<CR>"] = cmp.mapping.confirm({ select = true }),
 	},
 	sources = cmp.config.sources({
+		{ name = "norg" },
 		{ name = "nvim_lsp" },
+		{ name = "orgmode" },
 		{ name = "path" },
 		{ name = "ultisnips" }, -- For ultisnips users.
-		{ name = "look", keyword_length = 2, option = { convert_case = true, loud = true } },
+		-- { name = "look", keyword_length = 2, option = { convert_case = true, loud = true } },
 		-- { name = "vsnip" }, -- For vsnip users.
 		-- { name = 'luasnip' }, -- For luasnip users.
 		-- { name = 'snippy' }, -- For snippy users.
@@ -56,17 +60,18 @@ cmp.setup({
 			with_text = false,
 			maxwidth = 50,
 			menu = {
+				orgmode = "[OrgMode]",
 				nvim_lsp = "[LSP]",
 				buffer = "[Buffer]",
 				nvim_lua = "[Lua]",
 				ultisnips = "[UltiSnips]",
 				treesitter = "[treesitter]",
+				neorg = "[Neorg]",
 				look = "[Look]",
 				path = "[Path]",
 				spell = "[Spell]",
 				calc = "[Calc]",
 				emoji = "[Emoji]",
-				neorg = "[Neorg]",
 			},
 		}),
 	},
@@ -100,7 +105,7 @@ lsp.elixirls.setup({
 			-- I choose to disable dialyzer for personal reasons, but
 			-- I would suggest you also disable it unless you are well
 			-- aquainted with dialzyer and know how to use it.
-			dialyzerEnabled = true,
+			dialyzerEnabled = false,
 			-- I also choose to turn off the auto dep fetching feature.
 			-- It often get's into a weird state that requires deleting
 			-- the .elixir_ls directory and restarting your editor.
@@ -117,6 +122,7 @@ null_ls.setup({
 	sources = {
 		null_ls.builtins.completion.spell,
 		null_ls.builtins.diagnostics.credo,
+		null_ls.builtins.formatting.swiftformat,
 	},
 })
 
@@ -124,3 +130,21 @@ null_ls.setup({
 -- RUST
 --
 rust_tools.setup({})
+
+--
+-- LTEX
+--
+lsp.ltex.setup({
+	cmd = { path_to_ltexls },
+	settings = {
+		additionalRules = {
+			languageModel = { path_to_ltexls_en },
+		},
+	},
+	filetypes = { "bib", "gitcommit", "markdown", "org", "plaintex", "rst", "rnoweb", "tex", "norg" },
+})
+
+---
+-- Swift
+--
+lsp.sourcekit.setup({})

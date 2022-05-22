@@ -1,10 +1,12 @@
 local parser_configs = require("nvim-treesitter.parsers").get_parser_configs()
 
 -- ORG MODE
+require('orgmode').setup_ts_grammar()
+
 parser_configs.org = {
 	install_info = {
 		url = "https://github.com/milisims/tree-sitter-org",
-		revision = "f110024d539e676f25b72b7c80b0fd43c34264ef",
+		revision = "main",
 		files = { "src/parser.c", "src/scanner.cc" },
 	},
 	filetype = "org",
@@ -12,12 +14,15 @@ parser_configs.org = {
 
 require("nvim-treesitter.configs").setup({
 	ensure_installed = "all",
-	ignore_install = { "haskell", "elixir", "phpdoc" },
+	ignore_install = { "haskell", "phpdoc" },
 	highlight = {
 		enable = true, -- false will disable the whole extension
 		disable = { "org" },
 		additional_vim_regex_highlighting = { "org" },
 	},
+  indent = {
+          enable = true,
+  },
 	incremental_selection = {
 		enable = true,
 		keymaps = {

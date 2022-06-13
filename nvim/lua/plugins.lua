@@ -51,6 +51,8 @@ return require("packer").startup(function()
 
     use("octaltree/cmp-look")
 
+    use("williamboman/nvim-lsp-installer")
+
     --
     -- Key Binding
     --
@@ -83,11 +85,11 @@ return require("packer").startup(function()
 
     use("vim-test/vim-test")
 
-    use {
+    use({
         "rcarriga/vim-ultest",
         requires = {"vim-test/vim-test"},
         run = ":UpdateRemotePlugins"
-    }
+    })
 
     use("rcarriga/nvim-notify")
 
@@ -148,6 +150,10 @@ return require("packer").startup(function()
         config = function() require("plugins.nvim_tree_config") end
     })
 
+    use({"stevearc/dressing.nvim"})
+
+    use("yamatsum/nvim-nonicons")
+
     use({
         "phaazon/hop.nvim",
         branch = "v1", -- optional but strongly recommended
@@ -180,9 +186,8 @@ return require("packer").startup(function()
         "nvim-orgmode/orgmode",
         config = function()
             require("orgmode").setup({
-                org_agenda_files = {'~/.config/my-orgs/**/*'},
-                org_default_notes_file = '~/.config/my-orgs/refile.org'
-
+                org_agenda_files = {"~/.config/my-orgs/**/*"},
+                org_default_notes_file = "~/.config/my-orgs/refile.org"
             })
         end
     })

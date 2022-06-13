@@ -9,6 +9,8 @@ local lsp_signature = require("lsp_signature")
 local path_to_elixirls = vim.fn.expand("~/.config/elixir-ls/language_server.sh")
 local path_to_ltexls = vim.fn.expand("~/.config/ltex-ls/bin/ltex-ls")
 local path_to_ltexls_en = vim.fn.expand("~/.config/ltex-ls/en")
+local path_to_grammarly = vim.fn.expand(
+                              "~/.local/share/nvim/lsp_servers/grammarly")
 
 -- LSP SIGNATURE
 lsp_signature.setup({
@@ -216,6 +218,21 @@ lsp.tsserver.setup({
 --
 -- RUST
 --
+
+--[[ lsp.rust_analyzer.setup {
+    settings = {
+        ['rust-analyzer'] = {
+            checkOnSave = {
+                allFeatures = true,
+                overrideCommand = {
+                    'cargo', 'clippy', '--workspace', '--message-format=json',
+                    '--all-targets', '--all-features'
+                }
+            }
+        }
+    }
+} ]]
+
 rust_tools.setup({})
 
 --
@@ -224,6 +241,17 @@ rust_tools.setup({})
 lsp.ltex.setup({
     cmd = {path_to_ltexls},
     settings = {additionalRules = {languageModel = {path_to_ltexls_en}}},
+    filetypes = {
+        "bib", "gitcommit", "markdown", "org", "plaintex", "rst", "rnoweb",
+        "tex", "norg"
+    }
+})
+
+--
+-- GRAMMARLY
+--
+lsp.ltex.setup({
+    cmd = {path_to_grammarly},
     filetypes = {
         "bib", "gitcommit", "markdown", "org", "plaintex", "rst", "rnoweb",
         "tex", "norg"

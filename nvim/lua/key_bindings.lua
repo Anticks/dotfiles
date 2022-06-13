@@ -93,7 +93,7 @@ wk.register({
         d = {"<cmd>lua vim.lsp.buf.definition()<cr>", "Go to definition"},
         h = {"<cmd>lua vim.lsp.buf.hover()<cr>", "Hover information"},
         r = {"<cmd>lua vim.lsp.buf.rename()<cr>", "Rename"},
-        f = {"<cmd>lua vim.lsp.buf.formatting()<cr>", "Format file"},
+        f = {"<cmd>lua vim.lsp.buf.format { async = true }<cr>", "Format file"},
         t = {"<cmd>TroubleToggle<cr>", "Toggle trouble diagnostics"}
     }
 })
@@ -119,9 +119,8 @@ wk.register({
         name = "+my orgs",
         n = {"<cmd>e ~/.config/my-orgs/notes.org<cr>", "Open Notes"},
         s = {"<cmd>e ~/.config/my-orgs/standups.org<cr>", "Standups"},
-
         t = {"<cmd>e ~/.config/my-orgs/todos.org<cr>", "Todos"},
-        w = {"<cmd>e ~/.config/my-orgs/work.org<cr>", "Work"},
+        w = {"<cmd>e ~/.config/my-orgs/work.org<cr>", "Work"}
     }
 })
 

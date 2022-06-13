@@ -18,6 +18,7 @@ vim.opt.splitright = true
 vim.opt.clipboard = "unnamed"
 vim.opt.tabstop = 2
 vim.opt.termguicolors = true
+vim.opt.guifont = { "MonoLisa Nerd Font", "h12" }
 vim.opt.wildmode = {"list", "longest"}
 vim.opt.wrap = false
 vim.opt.list = true
@@ -31,4 +32,3 @@ vim.api.nvim_exec([[
 vim.lsp.set_log_level('debug')
 vim.api.nvim_command('let test#strategy = "neovim"')
 vim.api.nvim_command('let test#neovim#start_normal = 1')
-vim.api.nvim_command('set completeopt=menu,menuone,noselect')

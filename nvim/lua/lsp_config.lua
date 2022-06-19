@@ -7,10 +7,13 @@ local capabilities = require("cmp_nvim_lsp")
 local rust_tools = require("rust-tools")
 local lsp_signature = require("lsp_signature")
 local path_to_elixirls = vim.fn.expand("~/.config/elixir-ls/language_server.sh")
+local path_to_sumneko_lua = vim.fn.expand(
+                               "~/.local/share/nvim/lsp_servers/sumneko_lua/extension/server/bin/lua-language-server")
 local path_to_ltexls = vim.fn.expand("~/.config/ltex-ls/bin/ltex-ls")
 local path_to_ltexls_en = vim.fn.expand("~/.config/ltex-ls/en")
-local path_to_grammarly = vim.fn.expand(
-                              "~/.local/share/nvim/lsp_servers/grammarly")
+local path_to_gopls = vim.fn.expand("~/.local/share/nvim/lsp_servers/go/gopls")
+-- local path_to_grammarly = vim.fn.expand(
+                              -- "~/.local/share/nvim/lsp_servers/grammarly")
 
 -- LSP SIGNATURE
 lsp_signature.setup({
@@ -123,24 +126,9 @@ lsp.elixirls.setup({
 })
 
 --
--- Null LS
+-- GO
 --
-
-null_ls.setup({
-    sources = {
-        null_ls.builtins.completion.spell, null_ls.builtins.diagnostics.credo,
-        null_ls.builtins.formatting.swiftformat,
-        null_ls.builtins.diagnostics.eslint,
-        null_ls.builtins.code_actions.eslint,
-        null_ls.builtins.formatting.lua_format,
-        null_ls.builtins.formatting.prettier,
-        null_ls.builtins.diagnostics.credo.with({
-            method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
-            command = "/Users/megaman/.asdf/installs/elixir/1.10-otp-22/.mix/escripts/credo",
-            lint_command = "MIX_ENV=test mix credo suggest --format=flycheck --read-from-stdin ${INPUT}"
-        })
-    }
-})
+lsp.gopls.setup({cmd = {path_to_gopls}})
 
 --
 -- JAVASCRIPT
@@ -250,15 +238,63 @@ lsp.ltex.setup({
 --
 -- GRAMMARLY
 --
-lsp.ltex.setup({
+--[[ lsp.grammarly.setup({
     cmd = {path_to_grammarly},
     filetypes = {
         "bib", "gitcommit", "markdown", "org", "plaintex", "rst", "rnoweb",
         "tex", "norg"
     }
-})
+}) ]]
 
----
+--
+-- LUA
+--
+lsp.sumneko_lua.setup {
+    cmd = {path_to_sumneko_lua};
+    settings = {
+        Lua = {
+        runtime = {
+            -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+            version = 'LuaJIT',
+            -- Setup your lua path
+            -- path = runtime_path,
+        },
+        diagnostics = {
+            -- Get the language server to recognize the `vim` global
+            globals = {'vim'},
+        },
+        workspace = {
+            -- Make the server aware of Neovim runtime files
+            library = vim.api.nvim_get_runtime_file("", true),
+        },
+        -- Do not send telemetry data containing a randomized but unique identifier
+        telemetry = {
+            enable = false,
+        },
+        },
+    },
+}
+--
 -- Swift
 --
 lsp.sourcekit.setup({})
+
+--
+-- Null LS
+--
+null_ls.setup({
+    sources = {
+        null_ls.builtins.completion.spell, null_ls.builtins.diagnostics.credo,
+        null_ls.builtins.formatting.swiftformat,
+        null_ls.builtins.diagnostics.eslint,
+        null_ls.builtins.diagnostics.golangci_lint,
+        null_ls.builtins.code_actions.eslint,
+        null_ls.builtins.formatting.lua_format,
+        null_ls.builtins.formatting.prettier,
+        null_ls.builtins.diagnostics.credo.with({
+            method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
+            command = "/Users/megaman/.asdf/installs/elixir/1.10-otp-22/.mix/escripts/credo",
+            lint_command = "MIX_ENV=test mix credo suggest --format=flycheck --read-from-stdin ${INPUT}"
+        })
+    }
+})

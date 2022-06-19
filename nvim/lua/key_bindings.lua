@@ -110,6 +110,10 @@ wk.register({
             "<cmd>e ~/.config/kitty/kitty.conf<cr>", "Open Kitty Configuration"
         },
         f = {"<cmd>e ~/.config/fish/config.fish<cr>", "Open Fish Configuration"},
+        n = {
+            "<cmd>e ~/Library/Application Support/nushell/config.nu  <cr>",
+            "Open Nu Shell Configuration"
+        },
         p = {"<cmd>e ~/.config/nvim/lua/plugins.lua<cr>", "Open Plugins"}
     }
 })
@@ -131,7 +135,11 @@ wk.register({
         c = {"<cmd>TestFile<cr>", "Test current file"},
         S = {"<cmd>TestSuite<cr>", "Test suite"},
         v = {"<cmd>TestVisit<cr>", "Visit last test file"},
-        l = {"<cmd>TestLast<cr>", "Run most recent test"}
+        l = {"<cmd>TestLast<cr>", "Run most recent test"},
+        C = {
+            '<cmd>lua require("neotest").run.run()<cr>', "Neotest current file"
+        }
+
     }
 })
 

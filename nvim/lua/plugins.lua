@@ -1,6 +1,9 @@
 vim.cmd([[packadd packer.nvim]])
 
-return require("packer").startup(function()
+return require("packer").startup(function(use)
+    --
+    -- Remove Warning
+    --
     use("wbthomason/packer.nvim")
 
     --
@@ -9,6 +12,13 @@ return require("packer").startup(function()
     use("EdenEast/nightfox.nvim")
 
     use("marko-cerovac/material.nvim")
+
+    use({"catppuccin/nvim", as = "catppuccin"})
+
+    use({
+        "nvim-lualine/lualine.nvim",
+        requires = {"kyazdani42/nvim-web-devicons", opt = true}
+    })
 
     --
     -- LSP and Auto Completion
@@ -86,9 +96,21 @@ return require("packer").startup(function()
     use("vim-test/vim-test")
 
     use({
-        "rcarriga/vim-ultest",
-        requires = {"vim-test/vim-test"},
-        run = ":UpdateRemotePlugins"
+        "nvim-neotest/neotest",
+        requires = {
+            "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter",
+            "antoinemadec/FixCursorHold.nvim", "nvim-neotest/neotest-vim-test",
+            "nvim-neotest/neotest-go", "nvim-neotest/neotest-python"
+        },
+        config = function()
+            require("neotest").setup({
+                adapters = {
+                    require("neotest-go"), require("neotest-python"),
+                    require("neotest-vim-test")(
+                        {ignore_filetypes = {"python", "go"}})
+                }
+            })
+        end
     })
 
     use("rcarriga/nvim-notify")
@@ -107,13 +129,6 @@ return require("packer").startup(function()
     })
 
     use({"andymass/vim-matchup", event = "VimEnter"})
-
-    use({"ThePrimeagen/harpoon", requires = "nvim-lua/plenary.nvim"})
-
-    use({
-        "nvim-lualine/lualine.nvim",
-        requires = {"kyazdani42/nvim-web-devicons", opt = true}
-    })
 
     use({
         "nvim-treesitter/nvim-treesitter",
@@ -150,7 +165,12 @@ return require("packer").startup(function()
         config = function() require("plugins.nvim_tree_config") end
     })
 
-    use({"stevearc/dressing.nvim"})
+    use({
+        "stevearc/dressing.nvim",
+        config = function()
+            require("dressing").setup({insert_only = false})
+        end
+    })
 
     use("yamatsum/nvim-nonicons")
 

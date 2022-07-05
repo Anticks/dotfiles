@@ -51,8 +51,8 @@ wk.register({
         name = "+hop/jump",
         w = {"<cmd>HopWord<cr>", "Jump to word"},
         l = {"<cmd>HopLineStart<cr>", "Jump to line"},
-        c = {"<cmd>HopChar1<cr>", "Jump to 1 character"},
-        C = {"<cmd>HopChar2<cr>", "Jump to 2 Characters"},
+        C = {"<cmd>HopChar1<cr>", "Jump to 1 character"},
+        c = {"<cmd>HopChar2<cr>", "Jump to 2 Characters"},
         p = {"<cmd>HopPattern<cr>", "Jump to pattern"}
     }
 }, {mode = "n"})
@@ -65,6 +65,16 @@ wk.register({
             "Current buffer fuzzy find"
         },
         t = {"<cmd>Telescope current_buffer_tags<cr>", "Current buffer tags"}
+    }
+})
+
+wk.register({
+    ["<leader>p"] = {
+        name = "+pane",
+        j = {"<cmd>:split<cr>", "Split window down"},
+        l = {"<cmd>:vsplit<cr>", "Split window right"},
+        o = {"<cmd>:only<cr>", "Only window"},
+        c = {"<cmd>:close<cr>", "Close window"}
     }
 })
 
@@ -111,10 +121,15 @@ wk.register({
         },
         f = {"<cmd>e ~/.config/fish/config.fish<cr>", "Open Fish Configuration"},
         n = {
-            "<cmd>e ~/Library/Application Support/nushell/config.nu  <cr>",
+            "<cmd>e ~/Library/Application Support/nushell/config.nu<cr>",
             "Open Nu Shell Configuration"
         },
-        p = {"<cmd>e ~/.config/nvim/lua/plugins.lua<cr>", "Open Plugins"}
+        p = {"<cmd>e ~/.config/nvim/lua/plugins.lua<cr>", "Open Plugins"},
+        v = {
+            "<cmd>e ~/.config/nvim/lua/vim_settings.lua<cr>",
+            "Open Vim Settings"
+        },
+        h = {"<cmd>HardTimeToggle<cr>", "HARDMODE!!!!"}
     }
 })
 
@@ -148,7 +163,16 @@ wk.register({
         name = "+words",
         d = {"<Plug>Dsurround", "Delete Surrounding"},
         c = {"<Plug>Csurround", "Change Surrounding"},
-        s = {"<Plug>Ysurround", "You Surround"}
+        s = {"<Plug>Ysurround", "You Surround"},
+        t = {
+            "<Plug>(abolish-coerce-word)",
+            "(s)nake(m)ix(u)PPER(-)(.)<space>(t)itle"
+        },
+
+        u = {
+            "<Plug>(abolish-coerce-word) u",
+            "(s)nake(m)ix(u)PPER(-)(.)<space>(t)itle"
+        }
     }
 })
 
@@ -175,3 +199,42 @@ wk.register({
 }, {mode = "v"})
 
 wk.register({["<leader>t"] = {name = "+test"}}, {mode = "v"})
+
+--
+-- SMART SPLITS
+--
+-- resizing splits
+-- amount defaults to 3 if not specified
+-- use absolute values, no + or -
+require('smart-splits').resize_up()
+require('smart-splits').resize_down()
+require('smart-splits').resize_left()
+require('smart-splits').resize_right()
+-- moving between splits
+-- pass same_row as a boolean to override the default
+-- for the move_cursor_same_row config option.
+-- See Configuration.
+--
+require('smart-splits').move_cursor_up()
+require('smart-splits').move_cursor_down()
+require('smart-splits').move_cursor_left()
+require('smart-splits').move_cursor_right()
+-- persistent resize mode
+-- temporarily remap 'h', 'j', 'k', and 'l' to
+-- smart resize left, down, up, and right, respectively,
+-- press <ESC> to stop resize mode (unless you've set a different key in config)
+-- require('smart-splits').start_resize_mode()
+
+-- recommended mappings
+-- resizing splits
+-- Option
+vim.keymap.set('n', '<A-h>', require('smart-splits').resize_left)
+vim.keymap.set('n', '<A-j>', require('smart-splits').resize_down)
+vim.keymap.set('n', '<A-k>', require('smart-splits').resize_up)
+vim.keymap.set('n', '<A-l>', require('smart-splits').resize_right)
+-- moving between splits
+-- Control
+vim.keymap.set('n', '<C-h>', require('smart-splits').move_cursor_left)
+vim.keymap.set('n', '<C-j>', require('smart-splits').move_cursor_down)
+vim.keymap.set('n', '<C-k>', require('smart-splits').move_cursor_up)
+vim.keymap.set('n', '<C-l>', require('smart-splits').move_cursor_right)

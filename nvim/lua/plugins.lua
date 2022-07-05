@@ -79,6 +79,17 @@ return require("packer").startup(function(use)
                     margin = {1, 0, 1, 0}, -- extra window margin [top, right, bottom, left]
                     padding = {2, 2, 2, 2}, -- extra window padding [top, right, bottom, left]
                     winblend = 0
+                },
+                plugins = {
+                    spelling = {
+                        enabled = true, -- enabling this will show WhichKey when pressing z= to select spelling suggestions
+                        suggestions = 20 -- how many suggestions should be shown in the list?
+                    }
+                },
+                icons = {
+                    breadcrumb = " ", -- symbol used in the command line area that shows your active key combo
+                    separator = "", -- symbol used between a key and it's label
+                    group = " " -- symbol prepended to a group
                 }
             })
         end
@@ -87,11 +98,18 @@ return require("packer").startup(function(use)
     --
     -- Productivity
     --
+    --
+    use('mrjones2014/smart-splits.nvim')
+
+    use('takac/vim-hardtime')
+
     use("rstacruz/vim-closer")
 
     use("b3nj5m1n/kommentary")
 
     use("tpope/vim-surround")
+
+    use("tpope/vim-abolish")
 
     use("vim-test/vim-test")
 
@@ -168,7 +186,7 @@ return require("packer").startup(function(use)
     use({
         "stevearc/dressing.nvim",
         config = function()
-            require("dressing").setup({insert_only = false})
+            require("dressing").setup({input = {insert_only = false}})
         end
     })
 

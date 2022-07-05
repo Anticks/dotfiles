@@ -20,8 +20,7 @@ require("lualine").setup({
     inactive_sections = {lualine_a = {"filename"}, lualine_z = {"location"}},
     tabline = {},
     extensions = {}
-}) ]]
---
+}) ]] --
 --
 ---- Catppuccin
 local catppuccin = require("catppuccin")
@@ -112,8 +111,10 @@ ins_left {
 }
 
 ins_left {
+
     -- mode component
-    function() return ' ' end,
+    -- function() return ' ' end,
+    function() return ' ' end,
     color = function()
         -- auto change color according to neovims mode
         local mode_color = {

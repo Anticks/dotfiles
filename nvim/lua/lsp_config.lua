@@ -262,7 +262,7 @@ lsp.ltex.setup({
 --
 -- LUA
 --
-lsp.sumneko_lua.setup {
+lsp.lua_ls.setup {
     cmd = {path_to_sumneko_lua},
     settings = {
         Lua = {

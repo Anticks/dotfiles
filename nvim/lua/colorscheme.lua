@@ -230,8 +230,7 @@ ins_right {
     padding = {left = 1}
 }
 
-vim.g.catppuccin_flavour = "macchiato" -- latte, frappe, macchiato, mocha
-vim.cmd [[colorscheme catppuccin]]
+vim.cmd [[colorscheme catppuccin-frappe]] -- latte, frappe, macchiato, mocha
 
 -- Now don't forget to initialize lualine
 lualine.setup(config)

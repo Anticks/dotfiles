@@ -8,12 +8,14 @@ local rust_tools = require("rust-tools")
 local lsp_signature = require("lsp_signature")
 local path_to_elixirls = vim.fn.expand("~/.config/elixir-ls/language_server.sh")
 local path_to_sumneko_lua = vim.fn.expand(
-                               "~/.local/share/nvim/lsp_servers/sumneko_lua/extension/server/bin/lua-language-server")
+                                "~/.local/share/nvim/lsp_servers/sumneko_lua/extension/server/bin/lua-language-server")
 local path_to_ltexls = vim.fn.expand("~/.config/ltex-ls/bin/ltex-ls")
 local path_to_ltexls_en = vim.fn.expand("~/.config/ltex-ls/en")
 local path_to_gopls = vim.fn.expand("~/.local/share/nvim/lsp_servers/go/gopls")
+local path_to_tailwind = vim.fn.expand(
+                             "~/.local/share/nvim/lsp_servers/tailwindcss_npm/node_modules/@tailwindcss/language-server/bin/tailwindcss-language-server")
 -- local path_to_grammarly = vim.fn.expand(
-                              -- "~/.local/share/nvim/lsp_servers/grammarly")
+-- "~/.local/share/nvim/lsp_servers/grammarly")
 
 -- LSP SIGNATURE
 lsp_signature.setup({
@@ -22,6 +24,15 @@ lsp_signature.setup({
     floating_window = false,
     hint_prefix = "👺 "
 })
+
+require("nvim-lsp-installer").setup {}
+
+local function on_attach(client, bufnr)
+    -- set up buffer keymaps, etc.
+end
+
+lsp.svelte.setup {on_attach = on_attach}
+lsp.tailwindcss.setup {on_attach = on_attach}
 
 -- CMP
 cmp.setup({
@@ -104,7 +115,7 @@ cmp.setup.cmdline(":", {
     sources = cmp.config.sources({{name = "path"}}, {{name = "cmdline"}})
 })
 
-capabilities.update_capabilities(vim.lsp.protocol.make_client_capabilities())
+capabilities.default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 --
 -- Elixir
@@ -129,6 +140,8 @@ lsp.elixirls.setup({
 -- GO
 --
 lsp.gopls.setup({cmd = {path_to_gopls}})
+
+lsp.tailwindcss.setup({cmd = {path_to_tailwind}})
 
 --
 -- JAVASCRIPT
@@ -250,29 +263,27 @@ lsp.ltex.setup({
 -- LUA
 --
 lsp.sumneko_lua.setup {
-    cmd = {path_to_sumneko_lua};
+    cmd = {path_to_sumneko_lua},
     settings = {
         Lua = {
-        runtime = {
-            -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-            version = 'LuaJIT',
-            -- Setup your lua path
-            -- path = runtime_path,
-        },
-        diagnostics = {
-            -- Get the language server to recognize the `vim` global
-            globals = {'vim'},
-        },
-        workspace = {
-            -- Make the server aware of Neovim runtime files
-            library = vim.api.nvim_get_runtime_file("", true),
-        },
-        -- Do not send telemetry data containing a randomized but unique identifier
-        telemetry = {
-            enable = false,
-        },
-        },
-    },
+            runtime = {
+                -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+                version = 'LuaJIT'
+                -- Setup your lua path
+                -- path = runtime_path,
+            },
+            diagnostics = {
+                -- Get the language server to recognize the `vim` global
+                globals = {'vim'}
+            },
+            workspace = {
+                -- Make the server aware of Neovim runtime files
+                library = vim.api.nvim_get_runtime_file("", true)
+            },
+            -- Do not send telemetry data containing a randomized but unique identifier
+            telemetry = {enable = false}
+        }
+    }
 }
 --
 -- Swift

@@ -190,7 +190,13 @@ return require("packer").startup(function(use)
         end
     })
 
-    use("yamatsum/nvim-nonicons")
+    use 'nvim-tree/nvim-web-devicons'
+
+    use({
+        "yamatsum/nvim-nonicons",
+        requires = {'kyazdani42/nvim-web-devicons'},
+        config = function() require('nvim-nonicons').setup {} end
+    })
 
     use({
         "phaazon/hop.nvim",

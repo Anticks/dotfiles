@@ -1,6 +1,7 @@
 vim.opt.completeopt = {"menuone", "noinsert", "noselect"}
 vim.g.kommentary_create_default_mappings = false
 vim.g.surround_no_mappings = true
+vim.g.mapleader = " "
 vim.opt.expandtab = true
 vim.opt.hidden = true
 vim.opt.incsearch = true
@@ -25,6 +26,7 @@ vim.opt.wildmode = {"list", "longest"}
 vim.opt.wrap = false
 vim.opt.list = true
 vim.opt.listchars = "tab:▸\\ ,trail:·"
+vim.opt.expandtab = true
 vim.api.nvim_exec([[
     augroup YankHighlight
     autocmd!
@@ -34,3 +36,14 @@ vim.api.nvim_exec([[
 vim.lsp.set_log_level('debug')
 vim.api.nvim_command('let test#strategy = "neovim"')
 vim.api.nvim_command('let test#neovim#start_normal = 1')
+vim.api.nvim_create_user_command("Format", function(args)
+  local range = nil
+  if args.count ~= -1 then
+    local end_line = vim.api.nvim_buf_get_lines(0, args.line2 - 1, args.line2, true)[1]
+    range = {
+      start = { args.line1, 0 },
+      ["end"] = { args.line2, end_line:len() },
+    }
+  end
+  require("conform").format({ async = true, lsp_fallback = true, range = range })
+end, { range = true })

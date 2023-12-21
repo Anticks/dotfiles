@@ -227,6 +227,7 @@ rust_tools.setup({
 -- LTEX
 --
 lsp.ltex.setup({
+	cmd = { "ltex-ls" },
 	settings = { additionalRules = { languageModel = { path_to_ltexls_en } } },
 	filetypes = {
 		"bib",
@@ -276,15 +277,14 @@ lsp.sourcekit.setup({})
 -- Null LS
 --
 null_ls.setup({
-  sources = {
-    null_ls.builtins.diagnostics.credo.with({
-      method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
-      command = "mix",
-      lint_command = "credo suggest --format=flycheck --read-from-stdin ${INPUT}"
-    })
-  }
+	sources = {
+		null_ls.builtins.diagnostics.credo.with({
+			method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
+			command = "mix",
+			lint_command = "credo suggest --format=flycheck --read-from-stdin ${INPUT}",
+		}),
+	},
 })
-
 
 --[[ local credo = require("lint").linters.credo
 credo.cmd = "mix"

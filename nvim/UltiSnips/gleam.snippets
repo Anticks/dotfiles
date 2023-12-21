@@ -1,0 +1,103 @@
+snippet fn "fn"
+fn ${1:function_name}(${2}) -> ${3:Nil} {
+	${0:${VISUAL:todo}}
+}
+endsnippet
+
+snippet de "debug"
+|> debug(${0})
+endsnippet
+snippet pfn "pub fn"
+pub fn ${1:function_name}(${2}) -> ${3:Nil} {
+	${0:${VISUAL:todo}}
+}
+endsnippet
+snippet test "test fn"
+pub fn ${1:name}_test() {
+	${0}
+}
+endsnippet
+snippet af "anonymous fn"
+fn(${1}) { ${0:${VISUAL}} }
+endsnippet
+snippet let "let binding"
+let ${1} = ${0}
+endsnippet
+snippet l "let binding"
+let ${1} = ${0}
+endsnippet
+snippet as "assert binding"
+assert ${1} = ${0}
+endsnippet
+snippet tr "try binding"
+try ${1} = ${0}
+endsnippet
+snippet - "->"
+-> ${0}
+endsnippet
+snippet case "case expression"
+case ${1} {
+	${2} -> ${0}
+}
+endsnippet
+snippet ty "type"
+type ${1:Name} {
+	${0:$1}
+}
+endsnippet
+snippet pty "pub type"
+pub type ${1:Name} {
+	${0:$1}
+}
+endsnippet
+snippet tya "type alias"
+type ${1:Name} =
+	${0:$1}
+endsnippet
+snippet ptya "pub type alias"
+pub type ${1:Name} =
+	${0:$1}
+endsnippet
+snippet ext "external type"
+external type ${0}
+endsnippet
+snippet pext "pub external type"
+pub external type ${0}
+endsnippet
+snippet exfn "external fn"
+external fn ${1:function_name}(${2}) -> ${3}
+	= "${4}" "${0}"
+endsnippet
+snippet pexfn "pub external fn"
+pub external fn ${1:function_name}(${2}) -> ${3}
+	= "${4}" "${0}"
+endsnippet
+snippet im "import"
+import ${0:gleam/result}
+endsnippet
+snippet im. "import exposing"
+import ${1:gleam/result}.{${0}}
+endsnippet
+snippet p "|>"
+|> ${0}
+endsnippet
+snippet tup "tuple()"
+tuple(${0:${VISUAL}})
+endsnippet
+snippet bl "block"
+{
+	${0:${VISUAL}}
+}
+endsnippet
+snippet tf "fn(Type) -> Type"
+fn(${1}) -> ${0}
+endsnippet
+snippet seq "should.equal"
+should.equal(${0:${VISUAL}})
+endsnippet
+snippet strue "should.be_true"
+should.be_true(${0:${VISUAL}})
+endsnippet
+snippet sfalse "should.be_false"
+should.be_true(${0:${VISUAL}})
+endsnippet

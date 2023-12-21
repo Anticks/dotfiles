@@ -74,6 +74,7 @@ return {
 	"b3nj5m1n/kommentary",
 	"tpope/vim-surround",
 	"tpope/vim-abolish",
+	"tpope/vim-eunuch",
 	"vim-test/vim-test",
 	"rcarriga/nvim-notify",
 	"elixir-editors/vim-elixir",

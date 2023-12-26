@@ -57,11 +57,6 @@ return {
 						suggestions = 20, -- how many suggestions should be shown in the list?
 					},
 				},
-				icons = {
-					breadcrumb = " ", -- symbol used in the command line area that shows your active key combo
-					separator = "", -- symbol used between a key and it's label
-					group = " ", -- symbol prepended to a group
-				},
 			})
 		end,
 	},
@@ -78,7 +73,6 @@ return {
 	"vim-test/vim-test",
 	"rcarriga/nvim-notify",
 	"elixir-editors/vim-elixir",
-	"nvim-tree/nvim-web-devicons",
 	{
 		"nvim-neotest/neotest",
 		dependencies = {
@@ -156,13 +150,6 @@ return {
 		end,
 	},
 	{
-		"yamatsum/nvim-nonicons",
-		dependencies = { "kyazdani42/nvim-web-devicons" },
-		config = function()
-			require("nvim-nonicons")
-		end,
-	},
-	{
 		"phaazon/hop.nvim",
 		branch = "v1", -- optional but strongly recommended
 		config = function()
@@ -182,5 +169,22 @@ return {
 		build = function()
 			vim.fn["firenvim#install"](0)
 		end,
+	},
+	{
+		"gbprod/yanky.nvim",
+		opts = {
+			-- your configuration comes here
+			-- or leave it empty to use the default settings
+			-- refer to the configuration section below
+		},
+	},
+	{
+		"stevearc/aerial.nvim",
+		opts = {},
+		-- Optional dependencies
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
+			"kyazdani42/nvim-web-devicons",
+		},
 	},
 }

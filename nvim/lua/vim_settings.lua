@@ -33,7 +33,7 @@ vim.api.nvim_exec([[
     autocmd TextYankPost * silent! lua vim.highlight.on_yank()
     augroup end
   ]], false)
-vim.lsp.set_log_level('debug')
+vim.lsp.set_log_level('error')
 vim.api.nvim_command('let test#strategy = "neovim"')
 vim.api.nvim_command('let test#neovim#start_normal = 1')
 vim.api.nvim_create_user_command("Format", function(args)

@@ -163,7 +163,7 @@ ins_left({
 
 ins_left({
 	-- Lsp server name .
-	function()
+	--[[ function()
 		local msg = "404"
 		local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
 		local clients = vim.lsp.get_active_clients()
@@ -177,6 +177,21 @@ ins_left({
 			end
 		end
 		return msg
+	end, ]]
+
+	function()
+		local bufnr = vim.api.nvim_get_current_buf()
+
+		local clients = vim.lsp.buf_get_clients(bufnr)
+		if next(clients) == nil then
+			return ""
+		end
+
+		local c = {}
+		for _, client in pairs(clients) do
+			table.insert(c, client.name)
+		end
+		return table.concat(c, " | ")
 	end,
 	icon = " LSP:",
 	color = { fg = "#2ec5f1", gui = "bold" },
@@ -213,8 +228,8 @@ ins_right({ "branch", icon = "", color = { fg = colors.violet, gui = "bold" }
 
 ins_right({
 	"diff",
-	-- Is it me or the symbol for modified us really weird
-	symbols = { added = " ", modified = "柳 ", removed = " " },
+	-- Is it me or the symbol for modified is really weird
+	symbols = { added = " ", modified = "󰭼 ", removed = " " },
 	diff_color = {
 		added = { fg = colors.green },
 		modified = { fg = colors.orange },

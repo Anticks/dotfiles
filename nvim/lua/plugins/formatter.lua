@@ -10,7 +10,8 @@ return {
                 javascript = {{"prettierd", "prettier"}},
                 rust = {"rustfmt"},
                 go = {"gofmt", "goimports"},
-                elixir = {"mix"}
+                elixir = {"mix"},
+                markdown = {"prettier"}
             }
         })
     end

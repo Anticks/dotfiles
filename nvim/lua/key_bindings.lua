@@ -37,15 +37,6 @@ wk.register({
 		w = { "<cmd>Telescope grep_string<cr>", "Find word" },
 		n = { "<cmd>enew<cr>", "New file" },
 		t = { "<cmd>NvimTreeToggle<cr>", "Toggle NvimTree" },
-		a = {
-			'<cmd>lua require("harpoon.mark").add_file()<cr>',
-			"Add file to harpoon",
-		},
-		H = {
-			'<cmd>lua require("harpoon.ui").toggle_quick_menu()<cr>',
-			"Open harpoon",
-		},
-		h = { "<cmd>Telescope harpoon marks<cr>", "Telescope tha harpoon!" },
 	},
 })
 
@@ -87,7 +78,7 @@ wk.register({
 		m = { "<cmd>Neogit<cr>", "Neogit menu" },
 		M = { "<cmd>lua _lazygit_toggle()<cr>", "Lazygit menu" },
 		b = { "<cmd>Telescope git_branches<cr>", "Git branches" },
-		s = { "<cmd>Telescope git_status<cr>", "Git branches" },
+		s = { "<cmd>Telescope git_status<cr>", "Git status" },
 		l = { "<cmd>Gitsigns toggle_current_line_blame<cr>", "Toggle blame line" },
 		L = { "<cmd>Gitsigns blame_line<cr>", "Blame line detail" },
 		h = { "<cmd>Gitsigns stage_hunk<cr>", "Stage hunk" },
@@ -104,10 +95,12 @@ wk.register({
 		name = "+code/lsp",
 		a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code action" },
 		d = { "<cmd>lua vim.lsp.buf.definition()<cr>", "Go to definition" },
+		D = { "<cmd>lua vim.diagnostic.hide()<cr>", "Hide diagnostics" },
 		h = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Hover information" },
 		r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
 		f = { "<cmd>lua vim.lsp.buf.format { async = true }<cr>", "Format file" },
 		t = { "<cmd>TroubleToggle document_diagnostics<cr>", "Toggle trouble diagnostics" },
+		o = { "<cmd>AerialToggle left<cr>", "Code outline" },
 	},
 })
 
@@ -265,3 +258,15 @@ vim.keymap.set("n", "<C-h>", require("smart-splits").move_cursor_left)
 vim.keymap.set("n", "<C-j>", require("smart-splits").move_cursor_down)
 vim.keymap.set("n", "<C-k>", require("smart-splits").move_cursor_up)
 vim.keymap.set("n", "<C-l>", require("smart-splits").move_cursor_right)
+
+--
+-- YANKY
+-- Warning: Pasting slowed down some bit
+--
+vim.keymap.set({ "n", "x" }, "p", "<Plug>(YankyPutAfter)")
+vim.keymap.set({ "n", "x" }, "P", "<Plug>(YankyPutBefore)")
+vim.keymap.set({ "n", "x" }, "gp", "<Plug>(YankyGPutAfter)")
+vim.keymap.set({ "n", "x" }, "gP", "<Plug>(YankyGPutBefore)")
+
+vim.keymap.set("n", "<c-p>", "<Plug>(YankyPreviousEntry)")
+vim.keymap.set("n", "<c-n>", "<Plug>(YankyNextEntry)")

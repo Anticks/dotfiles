@@ -1,7 +1,5 @@
 -- following options are the default
 -- each of these are documented in `:help nvim-tree.OPTION_NAME`
-local nonicons_extention = require("nvim-nonicons.extentions.nvim-tree")
-
 return {
     "kyazdani42/nvim-tree.lua",
     dependencies = "kyazdani42/nvim-web-devicons",

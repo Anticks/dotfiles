@@ -2,26 +2,27 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
 end
 
-# Starship Terminal
+
+# Starship Cross-Shell Promt
 starship init fish | source
 
-# Rust LSP Rust Cargo and Neovim exe
-set -U fish_user_paths $HOME/.cargo/bin $fish_user_paths
-# set -U fish_user_paths ~/.local/bin $fish_user_paths
+# Java
+fish_add_path /opt/homebrew/opt/openjdk/bin
 
-# Python Conda 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-eval /opt/homebrew/Caskroom/miniforge/base/bin/conda "shell.fish" hook $argv | source
-# <<< conda initialize <<<
+# Curl
+fish_add_path /opt/homebrew/opt/curl/bin
 
-# ASDF
+# Asdf
 source /opt/homebrew/opt/asdf/libexec/asdf.fish
 
-# Go
-# set -x GOPATH (go env GOPATH) $GOPATH
-# set -x GOROOT (go env GOROOT) $GOROOT
-# set -x GOBIN (go env GOBIN) $GOBIN
-# set -x PATH $PATH:$GOPATH/bin
-# set -x PATH $PATH:$GOROOT/bin
-# set -x PATH $PATH:$GOBIN/bin
+# Asdf Go
+ . ~/.asdf/plugins/golang/set-env.fish
+
+# PHP Bison
+fish_add_path /opt/homebrew/opt/bison/bin
+
+# Python
+fish_add_path ~/Library/Python/3.9/bin
+
+# Rust
+fish_add_path ~/.cargo/bin/
